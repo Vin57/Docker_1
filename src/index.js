@@ -2,7 +2,7 @@ const server = require("express");
 const app = require("./app");
 const MongoClient = require("mongodb").MongoClient;
 
-MongoClient.connect('mongodb://db', {useUnifiedTopology: true}, (err, client) => {
+MongoClient.connect(`mongodb://${process.env.MONGO_APP_USER}:${process.env.MONGO_APP_PWD}@db`, {useUnifiedTopology: true}, (err, client) => {
     if(err) {
         console.log(err);
     } else {

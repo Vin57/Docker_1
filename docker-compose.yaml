@@ -10,12 +10,18 @@ services:
             - type: bind
               source: ./src
               target: /app/src
+        environment: 
+            - MONGO_APP_USER
+            - MONGO_APP_PWD
     db:
         image: mongo
         volumes: 
             - type: volume
               source: mydb
               target: /data/db
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME
+            - MONGO_INITDB_ROOT_PASSWORD
 volumes: 
     mydb:
         external: true
