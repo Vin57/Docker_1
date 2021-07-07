@@ -13,6 +13,11 @@ services:
         environment: 
             - MONGO_APP_USER
             - MONGO_APP_PWD
+        # Assure le démarrage de la dépendance
+        depends_on:
+            - db
+        # Redémarre le service selon l'option spécifié
+        restart: unless-stopped
     db:
         image: mongo
         volumes: 
@@ -22,6 +27,7 @@ services:
         environment: 
             - MONGO_INITDB_ROOT_USERNAME
             - MONGO_INITDB_ROOT_PASSWORD
+        restart: unless-stopped
 volumes: 
     mydb:
         external: true
